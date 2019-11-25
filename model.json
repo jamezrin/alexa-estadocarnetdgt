@@ -1,0 +1,162 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "estado carnet d. g. t.",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "cancela"
+                    ]
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "ayudame",
+                        "dame ayuda"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "adios"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "StatusQueryIntent",
+                    "slots": [],
+                    "samples": [
+                        "consulta el estado de mi carnet de conducir",
+                        "consulta como va mi carnet",
+                        "consulta el estado de mi carnet",
+                        "dime que tal mi carnet",
+                        "dime como va mi carnet",
+                        "dime donde esta mi carnet",
+                        "mira el estado de mi carnet",
+                        "comprueba",
+                        "comprueba el estado de mi carnet"
+                    ]
+                },
+                {
+                    "name": "ClearUserDataIntent",
+                    "slots": [],
+                    "samples": [
+                        "dame de baja",
+                        "limpia mis datos",
+                        "borra todos mis datos",
+                        "elimina todos mis datos",
+                        "elimina",
+                        "eliminame",
+                        "borra mis datos",
+                        "elimina mis datos",
+                        "elimina mi dni",
+                        "elimina mi informacion"
+                    ]
+                },
+                {
+                    "name": "RegisterUserDataIntent",
+                    "slots": [
+                        {
+                            "name": "dniNumber",
+                            "type": "AMAZON.SearchQuery",
+                            "samples": [
+                                "es {dniNumber}",
+                                "mi dni es {dniNumber}",
+                                "{dniNumber}"
+                            ]
+                        },
+                        {
+                            "name": "birthDate",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "en {birthDate}",
+                                "naci en {birthDate}",
+                                "nací el {birthDate}",
+                                "{birthDate}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "dame de alta",
+                        "registrame por favor",
+                        "registrame",
+                        "registra mis datos"
+                    ]
+                }
+            ],
+            "types": []
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "ClearUserDataIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.420519561831"
+                    },
+                    "slots": []
+                },
+                {
+                    "name": "RegisterUserDataIntent",
+                    "delegationStrategy": "SKILL_RESPONSE",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "dniNumber",
+                            "type": "AMAZON.SearchQuery",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1137732675203.1193377851586"
+                            }
+                        },
+                        {
+                            "name": "birthDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1137732675203.134551397498"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Confirm.Intent.420519561831",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "¿Está seguro de que quiere eliminar todos sus datos?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1137732675203.134551397498",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Dime tu fecha de nacimiento"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1137732675203.1193377851586",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Dime todos los digitos de tu DNI, incluyendo la letra"
+                    }
+                ]
+            }
+        ]
+    }
+}
